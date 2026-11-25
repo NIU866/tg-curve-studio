@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="在浏览器里绘制论文用的 TG 和 DTG 热重曲线。">
+<title>热重曲线绘图器 · Thermal Lab</title>
+<link rel="stylesheet" href="styles.css">
+<header class="top"><div><span class="brand">Thermal Lab</span><h1>热重曲线绘图器</h1></div><a class="repo" href="https://github.com/NIU866/tg-curve-studio">GitHub 源码</a></header>
+<main>
+  <section class="workspace">
+    <aside class="panel controls" aria-labelledby="data-title">
+      <h2 id="data-title">数据集</h2>
+      <p class="hint">导入含温度（°C）和质量两列的 XLSX、CSV 或 TSV。所有数据在浏览器内处理。</p>
+      <input id="files" type="file" accept=".xlsx,.csv,.tsv,.txt" multiple hidden>
+      <div class="actions"><button id="import" class="primary">导入数据</button><button id="demo">加载示例</button></div>
+      <div id="datasets"></div>
+      <label class="setting" for="window">DTG 计算窗口 <select id="window"><option>3</option><option selected>5</option><option>9</option><option>15</option><option>25</option></select> 点</label>
+      <p class="hint formula">DTG = −d(TG)/dT。窗口越大，曲线越平滑。</p>
+      <p id="feedback" role="status"></p>
+    </aside>
+    <div class="figures">
+      <section class="panel figure"><div class="figure-head"><h2>TG 质量曲线</h2><button id="export-tg" disabled>导出 SVG</button></div><div id="plot-tg" class="chart"><p>导入数据后显示 TG 曲线</p></div></section>
+      <section class="panel figure"><div class="figure-head"><h2>DTG 失重速率曲线</h2><button id="export-dtg" disabled>导出 SVG</button></div><div id="plot-dtg" class="chart"><p>导入数据后显示 DTG 曲线</p></div></section>
+    </div>
+  </section>
+</main>
+<script type="module" src="app.mjs"></script>
+</html>
